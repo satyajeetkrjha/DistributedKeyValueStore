@@ -8,18 +8,15 @@ import (
 
 var defaultBucket = []byte("default")
 
-// Database is an open bolt database.
 type Database struct {
 	db *bolt.DB
 }
 
-// NewDatabase returns an instance of a database that we can work with.
 func NewDatabase(dbPath string) (db *Database, closeFunc func() error, err error) {
 	boltDb, err := bolt.Open(dbPath, 0600, nil)
 	if err != nil {
 		return nil, nil, err
 	}
-
 	db = &Database{db: boltDb}
 	closeFunc = boltDb.Close
 
@@ -38,7 +35,6 @@ func (d *Database) createDefaultBucket() error {
 	})
 }
 
-// SetKey sets the key to the requested value into the default database or returns an error.
 func (d *Database) SetKey(key string, value []byte) error {
 	return d.db.Update(func(tx *bolt.Tx) error {
 		b := tx.Bucket(defaultBucket)
@@ -46,7 +42,6 @@ func (d *Database) SetKey(key string, value []byte) error {
 	})
 }
 
-// GetKey get the value of the requested from a default database.
 func (d *Database) GetKey(key string) ([]byte, error) {
 	var result []byte
 	err := d.db.View(func(tx *bolt.Tx) error {
