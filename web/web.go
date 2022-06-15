@@ -70,16 +70,13 @@ func (s *Server) SetHandler(w http.ResponseWriter, r *http.Request) {
 	key := r.Form.Get("key")
 	value := r.Form.Get("value")
 
-	fmt.Println(key)
-	fmt.Println(value)
-
-	h := fnv.New64()
-	h.Write([]byte(key))
-	shardIdx := h.Sum64() % uint64(s.shardCount)
-
-	fmt.Println(shardIdx)
+	shard := s.getShard(key)
+	if shard != s.shardIdx {
+		s.redirect(shard, w, r)
+		return
+	}
 
 	err := s.db.SetKey(key, []byte(value))
 
-	fmt.Fprintf(w, "Error = %v, shardIdx = %d", err, shardIdx)
+	fmt.Fprintf(w, "Error = %v, shardIdx = %d, current shard = %d", err, shard, s.shardIdx)
 }
