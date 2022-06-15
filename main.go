@@ -69,7 +69,7 @@ func main() {
 	}
 	defer close()
 
-	srv := web.NewServer(db, shardIdx, shardCount)
+	srv := web.NewServer(db, shardIdx, shardCount, addrs)
 
 	http.HandleFunc("/get", srv.GetHandler)
 	http.HandleFunc("/set", srv.SetHandler)
