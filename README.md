@@ -1,7 +1,3 @@
-Reference
-https://www.youtube.com/watch?v=oPwGrCoOUdo&list=PLWwSgbaBp9XrMkjEhmTIC37WX2JfwZp7I&index=2
-
-
 
 Tried simulating an entire distributed key value store .it's all from ground up and internally uses a bolt db .
 Get redirection
@@ -17,3 +13,8 @@ Set redirection
 
 
 <img width="622" alt="Screenshot 2022-06-15 at 6 15 50 AM" src="https://user-images.githubusercontent.com/23241962/173804051-33d9a8ab-f7bc-41e5-8be6-caf79b654302.png">
+
+Reference
+https://www.youtube.com/watch?v=oPwGrCoOUdo&list=PLWwSgbaBp9XrMkjEhmTIC37WX2JfwZp7I&index=2
+
+
